@@ -1,3 +1,4 @@
+/python/.idea
 /.idea/
 *.iml
 #local spark context data from unit tests
