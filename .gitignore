@@ -1,10 +1,10 @@
-/python/.idea
 /.idea/
 *.iml
-#local spark context data from unit tests
+
+# Local spark context data from unit tests
 spark-warehouse/
 
-#Build dirctory for maven/sbt
+# Build dirctory for maven/sbt
 target/
 project/project/
 project/target/
@@ -12,3 +12,8 @@ project/target/
 /target/
 /project/build.properties
 /src/main/scala/com/databricks/labs/validation/LocalTest.scala
+
+# Python Wrapper
+/python/.idea/
+/python/dist/
+
