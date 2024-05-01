@@ -328,6 +328,12 @@ evaluation specs and results
 The summary report is meant to be just that, a summary of the failed rules. This will return only the records that 
 failed and only the rules that failed for that record; thus, if the `summaryReport.isEmpty` then all rules passed.
 
+
+## Python Wraper
+The Python Wrapper allows users to validate data quality of their PySpark DataFrames using Python.
+
+They Python Wrapper can be found under the directory `/python`. A quickstart notebook is also located under `/python/examples`.
+
 ## Next Steps
 Clearly, this is just a start. This is a small package and, as such, a GREAT place to start if you've never
 contributed to a project before. Please feel free to fork the repo and/or submit PRs. We'd love to see what

@@ -1,0 +1,47 @@
+# Python Connector for the DataFrame Rules Engine
+The Python Connector allows users to validate data quality of their PySpark DataFrames using Python.
+
+```python
+validation_results = RuleSet(df)
+  .add(myRules)
+  .validate()
+```
+
+Currently, the Python Connector supports the following Rule types:
+1. List of Values (Strings _only_)
+2. Boolean Check
+3. User-defined Functions (must evaluate to a Boolean)
+
+
+### Boolean Check 
+Validate that an column expression evaluates to True.
+```python
+# Ensure that the temperature is a valid reading
+valid_temp_rule = Rule("valid_temperature", F.col("temperature") > -100.0)
+```
+
+### List of Values (LOVs)
+Validate that a Column only contains values present in a List of Strings. 
+
+```python
+# Create a List of Strings (LOS)
+building_sites = ["SiteA", "SiteB", "SiteC"]
+
+# Build a Rule that validates that a column only contains values from LOS
+building_name_rule = Rule("Building_LOV_Rule",
+                          column=F.col("site_name"),
+                          valid_strings=building_sites)
+```
+
+### User-Defined Functions (UDFs)
+UDFs are great when you need to add custom business logic for validating dataset quality.
+You can use User-defined Functions with the DataFrame Rules Engine that return a Boolean value.
+
+```python
+# Create a UDF to validate date entry 
+def valid_date_udf(ts_column):
+    return ts_column.isNotNull() & F.year(ts_column).isNotNull() & F.month(ts_column).isNotNull()
+
+# Create a Rule that uses the UDF to validate data
+valid_date_rule = Rule("valid_date_reading", valid_date_udf(F.col("reading_date")))
+```
