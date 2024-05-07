@@ -8,28 +8,20 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v2
-
     - name: Set up JDK 8
       uses: actions/setup-java@v2
       with:
         java-version: '8'
         distribution: 'adopt'
-
     - name: Run tests
       run: sbt coverage test
-
     - name: Coverage Report
       run: sbt coverageReport
-
     - name: "Upload coverage to Codecov"
       uses: "codecov/codecov-action@v3"
       with:
         fail_ci_if_error: true
-        max_attempts: 3
-        retry_on: error
-        retry_wait_seconds: 10
+
